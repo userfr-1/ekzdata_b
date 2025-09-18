@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ profile.fullname }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px;
+        }
+        .left-panel {
+            width: 25%;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h2, h3, h4 {
+            color: #38bdf8;
+        }
+        a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .tech {
+            display: inline-block;
+            background: #334155;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 5px;
+        }
+        .project {
+            background: #0f172a;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .resume-btn {
+            display: inline-block;
+            background: #2563eb;
+            padding: 10px 15px;
+            color: #fff;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+
+        <div class="left-panel">
+            <h2>{{ profile.fullname }}</h2>
+            <p>{{ profile.profession }}</p>
+
+            <p><b>Email:</b> {{ profile.email }}</p>
+            <p><b>Telefon:</b> {{ profile.phone }}</p>
+            <p><b>Joylashuv:</b> {{ profile.location }}</p>
+
+            <h3>Texnologiyalar</h3>
+            {% for tech in technologies %}
+                <span class="tech">{{ tech.name }}</span>
+            {% endfor %}
+
+            <h3>Ijtimoiy</h3>
+            {% for s in socials %}
+                <p><a href="{{ s.url }}" target="_blank">{{ s.platform }}</a></p>
+            {% endfor %}
+        </div>
+
+
+        <div class="right-panel">
+
+
+            <div class="card">
+                <h1>Salom! Men {{ profile.fullname }}</h1>
+                <p>{{ profile.about }}</p>
+                <p><b>Tajriba:</b> {{ profile.experience }}</p>
+
+                {% if profile.resume %}
+                    <a href="{{ profile.resume.url }}" class="resume-btn" download>📄 Rezyumeni yuklab olish</a>
+                {% endif %}
+            </div>
+
+
+            <div class="card">
+                <h3>Loyihalar</h3>
+                {% for p in projects %}
+                    <div class="project">
+                        <h4><a href="{{ p.link }}" target="_blank">{{ p.title }}</a></h4>
+                        <p>{{ p.description }}</p>
+                        {% if p.selected %}
+                            <strong> Tanlangan ish</strong>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+
+            <div class="card">
+                <h3>Kontakt</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Ismingiz" required>
+                    <input type="email" name="email" placeholder="Email manzilingiz" required>
+                    <textarea name="message" placeholder="Xabaringizni yozing" required></textarea>
+                    <button type="submit">Yuborish</button>
+                </form>
+                <p style="margin-top:10px;">Telefon: {{ profile.phone }}</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
