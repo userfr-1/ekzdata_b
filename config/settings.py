@@ -119,14 +119,8 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-from pathlib import Path
-import os
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = '/home/bsmvzq/ekzdata_b/staticfiles'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = '/home/bsmvzq/ekzdata_b/media'
