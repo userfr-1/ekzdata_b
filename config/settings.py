@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-h7m%v3aw%t2@!awx5x7%cxi87&_9!26-1c3i=(mdit5r7th$39
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bsmvzq.pythonanywhere.com']
 
 
 # Application definition
@@ -116,6 +116,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/bsmvzq/ekzdata_b/staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
