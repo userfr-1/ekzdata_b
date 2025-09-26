@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
 import os
 import sys
 
-project_home = '/home/bsmvzq/ekzdata_b'
+project_home = '/home/bsmvzq/ekzdata'
 if project_home not in sys.path:
     sys.path.append(project_home)
 
